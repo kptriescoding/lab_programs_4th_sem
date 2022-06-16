@@ -1,161 +1,83 @@
-import java.util.Scanner;
+import java.util.*;
 
-class changeTime {
-    int given_sec;
-    Scanner scan = new Scanner(System.in);
-    int sec, min, hours;
+class Complex_No {
+    public float real_part, imaginary_part;
 
-    public changeTime() {
-        System.out.println("Enter the time in seconds");
-        given_sec = scan.nextInt();
-        secToTime();
-        System.out.println(" when converted is " + hours + ":" + min + ":" + sec);
+    public Complex_No() {
     }
 
-    public void secToTime() {
-        hours = given_sec / 3600;
-        given_sec = given_sec % 3600;
-        min = given_sec / 60;
-        given_sec = given_sec % 60;
-        sec = given_sec;
+    public Complex_No(float real_part, float imaginary_part) {
+        this.real_part = real_part;
+        this.imaginary_part = imaginary_part;
     }
-}
 
-class combination {
-    int n, s = 0;
-    Scanner scan = new Scanner(System.in);
+    public void display() {
+        System.out.println("The Complex Number is " + real_part + "+ i*(" + imaginary_part + ")");
+    }
+    public void add(float real_part1, float imaginary_part1, float real_part2, float imaginary_part2) {
+        this.real_part = real_part1 + real_part2;
+        this.imaginary_part = imaginary_part1 + imaginary_part2;
+        System.out.println("The Sum is");
+        display();
+    }
 
-    public combination() {
-        System.out.println("Enter n");
-        n = scan.nextInt();
-        for (int i = 0; i < 10; i++)
-            findValue(3, i);
-        System.out.println("The possible combinations are " + s);
+    public void subtract(float real_part1, float imaginary_part1, float real_part2, float imaginary_part2) {
+        this.real_part = real_part1 - real_part2;
+        this.imaginary_part = imaginary_part1 - imaginary_part2;
+
+        System.out.println("The Difference is");
+        display();
 
     }
 
-    public void findValue(int x, int sum) {
-        if (x == 0) {
-            if (sum == n) s++;
-            return;
-        }
-        for (int i = 0; i < n; i++)
-            if(sum+i<=n)findValue(x - 1, sum + i);
-    }
-}
+    public void add(Complex_No complex1, Complex_No complex2) {
+        this.real_part = complex1.real_part + complex2.real_part;
+        this.imaginary_part = complex1.imaginary_part + complex2.imaginary_part;
 
-class staircase {
-    int n, x = 0, n1;
-    Scanner scan = new Scanner(System.in);
-
-    public staircase() {
-        System.out.println("Enter no of coins");
-        n = scan.nextInt();
-        findAns();
-        for (int i = 1; i < x; i++) {
-            for (int j = 0; j < i; j++)
-                System.out.print("*");
-            System.out.println();
-        }
-        for (int i = 0; i < n1; i++)
-            System.out.print("*");
-        System.out.println();
+        System.out.println("The Sum is");
+        display();
     }
 
-    public void findAns() {
-        n1 = n;
-        while (n1 >= x) n1 -= x++;
-    }
+    public void subtract(Complex_No complex1, Complex_No complex2) {
 
-}
+        this.real_part = complex1.real_part - complex2.real_part;
+        this.imaginary_part = complex1.imaginary_part - complex2.imaginary_part;
 
-class rearrangeArray {
-    Scanner scan = new Scanner(System.in);
-    int[] v1, v2;
-    int n;
-
-    public rearrangeArray() {
-        System.out.println("Enter the no of elements");
-        n = scan.nextInt();
-        v1 = new int[n];
-        v2 = new int[n];
-        solve();
-        System.out.println("The modified array is");
-        for (int i = 0; i < n; i++)
-            System.out.print(v2[i]+" ");
-        System.out.println();
-    }
-
-    void solve() {
-        System.out.println("Enter the elements");
-        int j = 0;
-        for (int i = 0; i < n; i++) v1[i] = scan.nextInt();
-        for (int i = 0; i < n; i++)
-            System.out.print(v1[i] + " ");
-        System.out.println();
-        for (int i = 0; i < n; i++)
-            if (v1[i] % 2 == 1)
-                v2[j++] = v1[i];
-        for (int i = 0; i < n; i++)
-            if (v1[i] % 2 == 0)
-                v2[j++] = v1[i];
-    }
-}
-
-class digits {
-    Scanner scan = new Scanner(System.in);
-    int a, b, c;
-
-    public digits() {
-        System.out.println("Enter the 3 numbers");
-        a = scan.nextInt();
-        b = scan.nextInt();
-        c = scan.nextInt();
-        if (a % 10 == b % 10 || b % 10 == c % 10 || c % 10 == a % 10) System.out.println("True");
-        else System.out.println("False");
-    }
-}
-
-class findElement {
-    Scanner scan = new Scanner(System.in);
-    int[][] a;
-    int m, n, x;
-
-    public findElement() {
-        takeInput();
-        findEle();
-    }
-    public void takeInput(){
-        System.out.println("Enter rows and columns");
-        m = scan.nextInt();
-        n = scan.nextInt();
-        System.out.println("Enter the elements");
-        a = new int[m][n];
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                a[i][j] = scan.nextInt();
-        System.out.println("Enter the element to be found");
-        x = scan.nextInt();
-    }
-    public void findEle(){
-        boolean found=false;
-        for(int i=0;i<m;i++)
-            for(int j=0;j<n;j++)
-                if(a[i][j]==x) {
-                    found=true;
-                    System.out.println("The ele "+x+" has the position i = "+i+" j = "+j);
-                }
-        if(!found) System.out.println("The ele "+x+" could not be found");
+        System.out.println("The Difference is");
+        display();
     }
 }
 
 public class Prog1 {
     public static void main(String[] args) {
-        new changeTime();
-        new combination();
-        new staircase();
-        new rearrangeArray();
-        new digits();
-        new findElement();
+
+        Scanner scan = new Scanner(System.in);
+        float real_part, imaginary_part;
+        System.out.println("Enter the real part of Complex No 1");
+        real_part = scan.nextFloat();
+        System.out.println("Enter the imaginary part of Complex No 1");
+        imaginary_part = scan.nextFloat();
+
+        Complex_No complex1 = new Complex_No(real_part, imaginary_part);
+
+        System.out.println("Enter the real part of Complex No 2");
+        real_part = scan.nextFloat();
+        System.out.println("Enter the imaginary part of Complex No 2");
+        imaginary_part = scan.nextFloat();
+
+        Complex_No complex2 = new Complex_No(real_part, imaginary_part);
+
+        Complex_No class_add = new Complex_No();
+        class_add.add(complex1, complex2);
+
+        Complex_No class_sub = new Complex_No();
+        class_sub.subtract(complex1, complex2);
+
+        Complex_No direct_add = new Complex_No();
+        direct_add.add(complex1.real_part, complex1.imaginary_part, complex2.real_part, complex2.imaginary_part);
+
+        Complex_No direct_sub = new Complex_No();
+        direct_sub.subtract(complex1.real_part, complex1.imaginary_part, complex2.real_part, complex2.imaginary_part);
     }
+
 }
