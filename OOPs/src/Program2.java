@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Program2 {
     public static void main(String[] args) {
-        String tname, tid, tstreet, tstate, tcountry, tusn, tcity;
+        String tname, tid, tusn;
         int ne, ns, nc;
         Address add;
         Scanner s = new Scanner(System.in);
@@ -17,14 +17,14 @@ public class Program2 {
         College[] cArray = new College[nc];
 
         for (int i = 0; i < ns; i++) {
-            System.out.println("Enter the name of " + i + "th student and his USN");
+            System.out.printf("Enter the name of %dth student and his USN\n",i+1);
             tname = s.nextLine();
             tusn = s.nextLine();
             add = Address.takeAddress(tname);
             sArray[i] = new Student(tname, tusn, add);
         }
         for (int i = 0; i < ne; i++) {
-            System.out.printf("Enter the name of %dth the Second.College", i);
+            System.out.printf("Enter the name of %dth the College\n", i+1);
             tname = s.nextLine();
             add = Address.takeAddress(tname);
             cArray[i] = new College(tname, add);
@@ -32,22 +32,22 @@ public class Program2 {
 
         for (int i = 0; i < ne; i++) {
 
-            System.out.printf("Enter the name of %dth employee and his ID\n", i);
+            System.out.printf("Enter the name of %dth employee and his ID\n", i+1);
             tname = s.nextLine();
             tid = s.nextLine();
             add = Address.takeAddress(tname);
             eArray[i] = new Employee(tid, tname, add);
         }
 
-        System.out.printf("\tSecond.Student details are :\n%15s%15s%15s%15s%15s%15s\n", "Name", "USN", "Street Num", "City", "State", "Country");
+        System.out.printf("\tStudent details are :\n%15s%15s%15s%15s%15s%15s\n", "Name", "USN", "Street Num", "City", "State", "Country");
         for (Student student : sArray) {
             System.out.printf("%15s%15s%15s%15s%15s%15s\n", student.name, student.usn, student.address.streetNum, student.address.city, student.address.state, student.address.country);
         }
-        System.out.printf("\tSecond.College details are :%15s%15s%15s%15s%15s\n", "Name", "Street Num", "City", "State", "Country");
+        System.out.printf("\tCollege details are :\n%15s%15s%15s%15s%15s\n", "Name", "Street Num", "City", "State", "Country");
         for (College college : cArray) {
             System.out.printf("%15s%15s%15s%15s%15s\n", college.name, college.address.streetNum, college.address.city, college.address.state, college.address.country);
         }
-        System.out.printf("\tSecond.Employee details are:\n%15s%15s%15s%15s%15s%15s\n", "Name", "Second.Employee Id", "Street Num", "City", "State", "Country");
+        System.out.printf("\tEmployee details are:\n%15s%15s%15s%15s%15s%15s\n", "Name", "Employee Id", "Street Num", "City", "State", "Country");
         for (Employee employee : eArray) {
             System.out.printf("%15s%15s%15s%15s%15s%15s\n", employee.name, employee.empID, employee.address.streetNum, employee.address.city, employee.address.state, employee.address.country);
         }
