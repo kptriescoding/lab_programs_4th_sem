@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Program7 {
+public class Main {
     public static void main(String[] args) throws InterruptedException {
         Market m = new Market(2);
 
@@ -12,8 +12,10 @@ public class Program7 {
                     m.produce("Mango");
                     m.produce("RipedMango");
                     m.produce("Orange");
+                    m.produce("Orange");
+                    m.produce("Orange");
                 }catch (Exception e){
-                   e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         });
@@ -26,7 +28,7 @@ public class Program7 {
                     m.consume();
                     m.consume();
                 }catch (Exception e){
-                  e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         });
@@ -59,18 +61,24 @@ class Market {
 
     public void produce(String str) throws InterruptedException {
         synchronized (this) {
-            while (isFull())
+            if (isFull()) {
                 wait();
+                System.out.println("Farmer waiting for consumer to consume ");
+            }
             System.out.println("Farmer produced " + str);
             fruits.add(str);
             notify();
-            Thread.sleep(1000);
+            Thread.sleep(500);
         }
     }
 
     public void consume() throws InterruptedException {
         synchronized (this) {
-            while (isEmpty()) wait();
+            if (isEmpty()){
+                System.out.println("Consumer waiting for farmer to produce");
+
+                wait();
+            }
             String str1 = fruits.remove(0);
             System.out.println("Consumer consumed " + str1);
 
