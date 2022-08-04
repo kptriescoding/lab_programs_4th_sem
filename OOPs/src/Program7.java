@@ -62,8 +62,8 @@ class Market {
     public void produce(String str) throws InterruptedException {
         synchronized (this) {
             if (isFull()) {
-                wait();
                 System.out.println("Farmer waiting for consumer to consume ");
+                wait();
             }
             System.out.println("Farmer produced " + str);
             fruits.add(str);
@@ -76,7 +76,6 @@ class Market {
         synchronized (this) {
             if (isEmpty()){
                 System.out.println("Consumer waiting for farmer to produce");
-
                 wait();
             }
             String str1 = fruits.remove(0);
