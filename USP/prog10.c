@@ -19,8 +19,10 @@ int main(){
     }
     printf("Waiting for shared memory to be available...\n");
     while(semctl( semid,0, GETVAL)!=0)has_waited=1;
-     if(has_waited==1)
+     if(has_waited==1){
         printf("The data written by other Process in Shared memory is: %s\n",shmstr);
+        return 0;
+     }
     semctl(semid,0, SETVAL,1);
     printf("Shared memory is now available\nSemaphore with semid %d is now locked by Process %d\nEnter data to be entered in the shared memory\n",semid,getpid());
         scanf("%[^\n]s",shmstr);
