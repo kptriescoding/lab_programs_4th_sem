@@ -22,17 +22,14 @@ public class Subset {
 
     static void subsetSum(int req, int i) {
         if (i < 0 && req != 0) return;
-        if (i < 0) {print(); return;}
+        else if (i < 0 ) {print(); return;}
 
         if (req >= arr[i] && !bool[i]) {
             bool[i] = true;
             subsetSum(req - arr[i], i - 1);
-            bool[i] = false;
-            subsetSum(req, i - 1);
-        } else {
-            bool[i] = false;
-            subsetSum(req, i - 1);
         }
+        bool[i] = false;
+        subsetSum(req, i - 1);
 
     }
 
