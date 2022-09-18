@@ -1,10 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> djikstra(int V, int **graph, int src)
+int * djikstra(int V, int **graph, int src)
 {
-    vector<int> dist(V, INT_MAX);
+    int *dist=new int [V];
+	for(int i=0;i<V;i++) dist[i]=INT_MAX;
     dist[src] = 0;
-    vector<bool> fin(V, false);
+	bool *fin=new bool[V];
+	for(int i=0;i<V;i++) fin[i]=false;
     for (int count = 0; count < V - 1; count++)
     {
         int u = -1;
@@ -37,11 +39,11 @@ int main()
     }
     cout << "Enter source vertex" << endl;
     cin >> src;
-    vector<int> res = djikstra(V, graph, src);
+	int *res=new int[V];
+     res = djikstra(V, graph, src);
     for (int i = 0; i < V; i++)
     {
         cout << "distance from " << src << " to " << i << " is " << res[i] << endl;
     }
     return 0;
 }
-
