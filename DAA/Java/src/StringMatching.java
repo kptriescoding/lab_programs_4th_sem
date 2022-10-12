@@ -23,7 +23,7 @@ public class StringMatching {
             arr[i] = pattern.length;
         }
 //        Change the  value of character pattern[i]
-        for (int i = 0; i < pattern.length; i++)
+        for (int i = 0; i < pattern.length-1; i++)
             arr[pattern[i]] = pattern.length - 1 - i;
 
         return arr;
