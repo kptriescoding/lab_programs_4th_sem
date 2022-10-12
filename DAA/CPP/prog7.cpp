@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int knapSack(int W, int wt[], int val[], int n)
+void knapSack(int W, int wt[], int val[], int n)
 {
     int K[n + 1][W + 1];
     for (int i = 0; i <= n; i++)
@@ -15,9 +15,21 @@ int knapSack(int W, int wt[], int val[], int n)
                               K[i - 1][w]);
             else
                 K[i][w] = K[i - 1][w];
-        }
+                printf("%d\t",K[i][w]);
+        }cout<<endl;
     }
-    return K[n][W];
+    int w=W;
+    int res=K[n][w];
+    cout<<"the weight included are"<<endl;
+    for(int i=n;i>0 && res>0;i--){
+        if(res==K[i-1][w]) continue;
+        else{
+            printf("%d\t",wt[i-1]);
+            res=res-val[i-1];
+            w=w-wt[i-1];
+        }
+    }cout<<endl;
+    cout << "Maximum total value in a knapsack is" <<  K[n][W];
 }
 int main()
 {
@@ -33,6 +45,6 @@ int main()
     }
     cout << "Enter the value of knapsack" << endl;
     cin >> W;
-    cout << "Maximum total value in a knapsack is" << knapSack(W, wt, val, n);
+    knapSack(W, wt, val, n);
     return 0;
 }
