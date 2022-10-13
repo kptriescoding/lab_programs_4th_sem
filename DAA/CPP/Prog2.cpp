@@ -4,7 +4,7 @@ using namespace std;
 int cnt;
 int iPartition(int a[], int left, int right)
 {
-    int i, j, pivot, temp;
+    int i, j, pivot;
     pivot = a[left];
     i = left + 1;
     j = right;
