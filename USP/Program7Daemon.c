@@ -9,9 +9,10 @@
 #include <shadow.h>
 #include <crypt.h>
 #include <pwd.h>
-
+// Function to Make this a daemon process (Recall steps learnt in theory)
 static void skeleton_daemon()
 {
+//     Forking and thus making the process the session leader
     pid_t pid;
     pid = fork();
 
@@ -33,7 +34,7 @@ static void skeleton_daemon()
         exit(EXIT_SUCCESS);
     umask(0);
     chdir("/");
-
+// Closing all the Files 
     int x;
     for (x = sysconf(_SC_OPEN_MAX); x > 0; x--)
     {
@@ -41,7 +42,7 @@ static void skeleton_daemon()
     }
     openlog("firstdaemon", LOG_PID, LOG_DAEMON);
 }
-
+// To check password by checking for username and password in shadow entry
 int CheckPassword(const char *user, const char *password)
 {
     struct passwd *passwdEntry = getpwnam(user);
